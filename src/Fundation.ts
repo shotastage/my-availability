@@ -1,7 +1,7 @@
 export const split = (array: Array<any>, n: number) =>
   array.reduce(
     (a, c, i) =>
-      i % n == 0 ? [...a, [c]] : [...a.slice(0, -1), [...a[a.length - 1], c]],
+      i % n === 0 ? [...a, [c]] : [...a.slice(0, -1), [...a[a.length - 1], c]],
     []
   );
 
