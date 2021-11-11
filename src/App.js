@@ -1,5 +1,5 @@
 import React from "react";
-import { useSpring, animated } from 'react-spring'
+import { animated } from 'react-spring'
 import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import Calendar from "react-calendar";
@@ -81,8 +81,6 @@ class App extends React.Component {
   };
 
   switchResult(date, issuer, inst) {
-    let urlString =
-      "/marketplace/tickets?date=2020-03-10&issuer=aya&instrument=PF";
   }
 
   onClick = () => {
@@ -91,7 +89,6 @@ class App extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
 
     const { value, suggestions } = this.state;
 
