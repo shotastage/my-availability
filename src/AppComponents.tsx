@@ -49,11 +49,23 @@ export const ConditionInputPanel = styled.div`
   transform: translateY(-50%) translateX(-50%);
   margin: auto;
 
+  @media screen and (max-width: 480px) {
+    position: relative;
+    top: 0%;
+    left: 0%;
+    transform: translateY(0%) translateX(0%);
+    width: 100vh;
+    height: 100vw;
+    min-height: 100vh;
+    min-width: 100vw;
+
+  }
+
   .react-autosuggest__container {
     padding: 0;
     display: flex;
     justify-content: center;
-    align-item: center;
+    align-items: center;
   }
 
   .react-autosuggest__input--focused {
@@ -126,4 +138,8 @@ export const HeadTitle = styled.h1`
   font-size: 2.5rem;
   font-weight: 500;
   color: #1c1c1c;
+
+  @media screen and (max-width: 480px) {
+    font-size: 1.5rem;
+  }
 `;

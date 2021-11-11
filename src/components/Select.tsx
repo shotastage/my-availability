@@ -30,4 +30,8 @@ export const Select = styled.select`
   &:hover {
     filter: drop-shadow(0px 1px 10px rgb(79, 79, 79));
   }
+
+  @media screen and (max-width: 480px) {
+    width: 80%;
+  }
 `;
