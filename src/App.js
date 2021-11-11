@@ -1,5 +1,5 @@
 import React from "react";
-import Animate from "animate.css-react";
+import { useSpring, animated } from 'react-spring'
 import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import Calendar from "react-calendar";
@@ -32,7 +32,7 @@ class App extends React.Component {
       inputDate: formatDate(new Date(), "YYYY-MM-DD"),
       inputIssuer: "INPUT_ISSUER",
       inputInstrument: "",
-      words: [],
+      words: ["飲み会などの集団での食事", "仕事や授業などのミーティング", "２者でのお食事", "飲酒を伴うイベント", "旅行", "喫茶店・カフェでのお茶・お茶会", "お祭り"],
       value: "",
       suggestions: []
     };
@@ -43,28 +43,15 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchAPI();
   }
 
   onChangeIssuer = value => {
     this.setState({ inputIssuer: value });
   };
 
-  schools = value => {
-    APIClient.POST(
-      "/api/marketplace/school/autocomplete",
-      { input_word: value },
-      data => {
-        this.setState({ words: data.words });
-      }
-    );
-  };
-
   getSuggestions = value => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-
-    this.schools(value);
 
     return inputLength === 0
       ? []
@@ -110,7 +97,7 @@ class App extends React.Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: "教室名",
+      placeholder: "ex. お食事, ミーティングなど",
       value,
       onChange: this.onChange
     };
@@ -118,9 +105,9 @@ class App extends React.Component {
     return (
       <>
         <BookingContainer>
-          <Animate appear="fadeIn" durationAppear={1000} component="div">
+          <animated.div>
             <ConditionInputPanel>
-              <HeadTitle>レッスンを探す</HeadTitle>
+              <HeadTitle>@shotastageの日程を探す</HeadTitle>
 
               <Label>日にち</Label>
               <Input type="date" name="s" defaultValue={this.state.inputDate} />
@@ -129,7 +116,7 @@ class App extends React.Component {
                 <Calendar onChange={this.onChange} value={this.state.date} />
               )}
 
-              <Label>教室</Label>
+              <Label>目的</Label>
 
               <Autosuggest
                 suggestions={suggestions}
@@ -141,19 +128,19 @@ class App extends React.Component {
                 inputProps={inputProps}
               />
 
-              <Label>楽器</Label>
+              <Label>緊急度</Label>
               <Select>
-                <option value="PF">ピアノ</option>
-                <option value="EL">エレクトーン</option>
-                <option value="VL">バイオリン</option>
-                <option value="PO">パイプオルガン</option>
+                <option value="PF">急</option>
+                <option value="EL">やや急</option>
+                <option value="VL">普通</option>
+                <option value="PO">いつでもいい</option>
               </Select>
 
               <PositioningButton onClick={this.onClick}>
                 Search
               </PositioningButton>
             </ConditionInputPanel>
-          </Animate>
+          </animated.div>
         </BookingContainer>
       </>
     );

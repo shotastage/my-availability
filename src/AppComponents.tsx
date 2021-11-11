@@ -104,7 +104,7 @@ export const Label = styled.label`
 `;
 
 export const BookingContainer = styled.div`
-  background: url(https://cdn.pixabay.com/photo/2016/05/01/15/36/kid-1365105_1280.jpg)
+  background: url(https://cdn.pixabay.com/photo/2019/05/27/22/57/planner-4233907_1280.jpg)
     no-repeat center;
   background-size: cover;
   height: 100vh;
