@@ -13,7 +13,7 @@ import {
   HeadTitle
 } from "./AppComponents";
 
-const getSuggestionValue = issuers => issuers;
+const getSuggestionValue = suggestion => suggestion;
 
 const renderInputComponent = inputProps => (
   <Input style={{ width: "100%" }} type="text" {...inputProps} />
@@ -49,16 +49,39 @@ class App extends React.Component {
     this.setState({ inputIssuer: value });
   };
 
-  getSuggestions = value => {
-    const inputValue = value.trim().toLowerCase();
+  evalInput(eTarget, input) {
+    const inputArr = [];
+
+    for (var i = 0; i < input.length; i++) {
+      const tmp = input.slice(0, i + 1);
+      inputArr.push(tmp);
+    }
+
+    for (var j = 0; j < input.length; j++) {
+      const tmp = input.slice(input.length - j - 1, input.length);
+      inputArr.push(tmp);
+    }
+
+    const einputArr = inputArr.filter(e => e.length >= 2);
+
+    for(let i in einputArr){
+      if (eTarget.indexOf(einputArr[i]) > -1) {
+        return true;
+      }
+      return false;
+    }
+  }
+
+
+  getSuggestions(value) {
+    const inputValue = value.trim();
     const inputLength = inputValue.length;
 
     return inputLength === 0
       ? []
-      : this.state.words.filter(
-          issuer => issuer.toLowerCase().slice(0, inputLength) === inputValue
-        );
-  };
+      : this.state.words.filter(words => this.evalInput(words, value));
+  }
+
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   onSuggestionsFetchRequested = ({ value }) => {
@@ -84,8 +107,7 @@ class App extends React.Component {
   }
 
   onClick = () => {
-    document.location.href =
-      "/marketplace/tickets?date=2020-03-10&issuer=aya&instrument=PF";
+    alert('申し訳ございませんが、現在ABLサーバーとの通信ができません');
   };
 
   render() {
