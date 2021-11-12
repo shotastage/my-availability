@@ -32,7 +32,7 @@ class App extends React.Component {
       inputDate: formatDate(new Date(), "YYYY-MM-DD"),
       inputIssuer: "INPUT_ISSUER",
       inputInstrument: "",
-      words: ["飲み会などの集団での食事", "仕事や授業などのミーティング", "２者でのお食事", "飲酒を伴うイベント", "旅行", "喫茶店・カフェでのお茶・お茶会", "お祭り"],
+      words: ["飲み会などの集団での食事", "仕事や授業などのミーティング", "２者でのお食事", "飲酒を伴うイベント", "旅行", "喫茶店・カフェでのお茶・お茶会", "お祭り", "この中のリストには該当する目的が見当たらない"],
       value: "",
       suggestions: []
     };
