@@ -64,7 +64,7 @@ class App extends React.Component {
 
     const einputArr = inputArr.filter(e => e.length >= 2);
 
-    for(let i in einputArr){
+    for (let i in einputArr) {
       if (eTarget.indexOf(einputArr[i]) > -1) {
         return true;
       }
